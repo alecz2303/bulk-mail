@@ -17,7 +17,6 @@ tinymce.init({
     selector: "textarea#elm1",
     language : 'es_MX',
     theme: "modern",
-    width: 600,
     height: 300,
     plugins: [
          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
@@ -67,6 +66,20 @@ tinymce.init({
 				</label>
 			</div>
 		</div>
+		<div class="row">
+			<div class="large-6 columns">
+				<label>
+					Your name:
+					<input type="text" name="fromname" />
+				</label>
+			</div>
+			<div class="large-6 columns">
+				<label>
+					Your e-mail:
+					<input type="text" name="frommail" />
+				</label>
+			</div>
+		</div>
 		<hr>
 
 		<div class="row">
@@ -76,11 +89,11 @@ tinymce.init({
 					<input type="text" name="subject">
 				</label>
 			</div>
-    		<div class="large-6 columns">
+    		<div class="large-4 columns">
 				<input class="button" type="button" onclick="addInput()" name="add" value="Add Mail" />
 				<div id="text"></div>
 			</div>
-    		<div class="large-6 columns">	
+    		<div class="large-8 columns">	
     			<textarea id="elm1" name="area"></textarea>
     			<input class="button" type="submit" value="Enviar" >
     		</div>
@@ -127,7 +140,7 @@ if(isset($_POST['area'])){
 	foreach ($_POST['email'] as $email) {
 	$content = $_POST['area'];	
 		$message = \Swift_Message::newInstance($subject)
-					->setFrom(array("kerberos.it.s@gmail.com" => "Alecz Localhost"))
+					->setFrom(array($_POST['frommail'] => $_POST['frommail']))
 					->setTo(array($email))
 					->setBody($content, 'text/html')
 					->addPart(strip_tags($content), 'text/plain');
