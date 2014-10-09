@@ -123,11 +123,6 @@ if(isset($_POST['area'])){
 	 ->setPassword($apikey);
 
 	$swift = \Swift_Mailer::newInstance($transport);
-}
-
-//Send a message
-
-if(isset($_POST['area'])){
 	//foreach ($to as $email => $name) {
 	foreach ($_POST['email'] as $email) {
 	$content = $_POST['area'];	
