@@ -51,6 +51,7 @@ tinymce.init({
 </script>
 
 <div style="padding: 60px; margin: auto">
+	<h1>Mail</h1>
 	<form method="post">
 		<div class="row">
 			<div class="large-6 columns">
