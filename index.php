@@ -127,7 +127,7 @@ if(isset($_POST['area'])){
 	foreach ($_POST['email'] as $email) {
 	$content = $_POST['area'];	
 		$message = \Swift_Message::newInstance($subject)
-					->setFrom(["kerberos.it.s@gmail.com" => "Alecz Localhost"])
+					->setFrom(array("kerberos.it.s@gmail.com" => "Alecz Localhost"))
 					->setTo(array($email))
 					->setBody($content, 'text/html')
 					->addPart(strip_tags($content), 'text/plain');
