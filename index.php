@@ -33,7 +33,7 @@ tinymce.init({
         {title: 'Table styles'},
         {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
     ]
- }); 
+ });
 </script>
 
 <script language="javascript">
@@ -50,7 +50,9 @@ tinymce.init({
 </script>
 
 <div style="padding: 60px; margin: auto">
-	<h1>Mail</h1>
+	<div class="text-center">
+		<h1>Bulk Mail</h1>
+	</div>
 	<form method="post">
 		<div class="row">
 			<div class="large-6 columns">
@@ -93,7 +95,7 @@ tinymce.init({
 				<input class="button" type="button" onclick="addInput()" name="add" value="Add Mail" />
 				<div id="text"></div>
 			</div>
-    		<div class="large-8 columns">	
+    		<div class="large-8 columns">
     			<textarea id="elm1" name="area"></textarea>
     			<input class="button" type="submit" value="Enviar" >
     		</div>
@@ -101,7 +103,7 @@ tinymce.init({
 	</form>
 </div>
 	<pre>
-		<?php 
+		<?php
 			if(isset($_POST['area'])){
 				foreach ($_POST['email'] as $email) {
 					echo $email;
@@ -138,7 +140,7 @@ if(isset($_POST['area'])){
 	$swift = \Swift_Mailer::newInstance($transport);
 	//foreach ($to as $email => $name) {
 	foreach ($_POST['email'] as $email) {
-	$content = $_POST['area'];	
+	$content = $_POST['area'];
 		$message = \Swift_Message::newInstance($subject)
 					->setFrom(array($_POST['frommail'] => $_POST['frommail']))
 					->setTo(array($email))
@@ -146,6 +148,6 @@ if(isset($_POST['area'])){
 					->addPart(strip_tags($content), 'text/plain');
 
 		$result = $swift->send($message);
-		
+
 	}
 }
